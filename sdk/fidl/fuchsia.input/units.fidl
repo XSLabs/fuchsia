@@ -1,9 +1,7 @@
-// Copyright 2019 The Fuchsia Authors. All rights reserved.
+// Copyright 2026 The Fuchsia Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-library fuchsia.input.report;
-
-using fuchsia.input;
+library fuchsia.input;
 
 /// This provides an easy, standardized way to specify units. New units can
 /// be added as needed. Each UnitType should be named after a specific unit that
@@ -11,9 +9,7 @@ using fuchsia.input;
 /// DISTANCE). More complicated units that need to be differentiated should
 /// begin with SI_ (for Internation System of Units) or ENGLISH_ (for English
 /// System of Units).
-// TODO(https://fxbug.dev/534432946): Deprecate and remove from
-// fuchsia.input.report in favor of fuchsia.input.
-@available(replaced=NEXT)
+@available(added=NEXT)
 type UnitType = flexible enum : uint32 {
     /// The device did not specify units.
     NONE = 0;
@@ -48,49 +44,31 @@ type UnitType = flexible enum : uint32 {
     /// A measurement of pressure in pascals.
     PASCALS = 10;
 
-    // A measurement of luminous flux in lumens per meter squared.
+    /// A measurement of luminous flux in lumens per meter squared.
     LUX = 11;
 
-    // A measurement of seconds.
+    /// A measurement of seconds.
     SECONDS = 12;
 };
 
-@available(added=NEXT)
-alias UnitType = fuchsia.input.UnitType;
-
 /// Describes a given unit by giving the unit and the unit's exponent.
 /// E.g: Nanometers would have type METERS and exponent -9.
-// TODO(https://fxbug.dev/534432946): Deprecate and remove from
-// fuchsia.input.report in favor of fuchsia.input.
-@available(replaced=NEXT)
+@available(added=NEXT)
 type Unit = struct {
     type UnitType;
     exponent int32;
 };
 
-@available(added=NEXT)
-alias Unit = fuchsia.input.Unit;
-
 /// Describe a `Range` of values.
-// TODO(https://fxbug.dev/534432946): Deprecate and remove from
-// fuchsia.input.report in favor of fuchsia.input.
-@available(replaced=NEXT)
+@available(added=NEXT)
 type Range = struct {
     min int64;
     max int64;
 };
 
-@available(added=NEXT)
-alias Range = fuchsia.input.Range;
-
 /// An `Axis` is defined as a `range` and a `unit`.
-// TODO(https://fxbug.dev/534432946): Deprecate and remove from
-// fuchsia.input.report in favor of fuchsia.input.
-@available(replaced=NEXT)
+@available(added=NEXT)
 type Axis = struct {
     range Range;
     unit Unit;
 };
-
-@available(added=NEXT)
-alias Axis = fuchsia.input.Axis;
