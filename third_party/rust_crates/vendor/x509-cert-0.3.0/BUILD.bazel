@@ -20,9 +20,9 @@ package(
 
 package_info(
     name = "package_info",
-    package_name = "const-oid",
+    package_name = "x509-cert",
     package_url = "https://github.com/RustCrypto/formats",
-    package_version = "0.10.2",
+    package_version = "0.3.0",
 )
 
 license(
@@ -35,7 +35,7 @@ license(
 )
 
 rust_library(
-    name = "const_oid",
+    name = "x509_cert",
     srcs = glob(
         include = ["**/*.rs"],
         allow_empty = False,
@@ -52,15 +52,11 @@ rust_library(
             "WORKSPACE.bazel",
         ],
     ),
-    crate_features = select({
-        "@rules_rust//rust/platform:aarch64-unknown-fuchsia": [
-            "db",  # aarch64-unknown-fuchsia
-        ],
-        "@rules_rust//rust/platform:x86_64-unknown-fuchsia": [
-            "db",  # x86_64-unknown-fuchsia
-        ],
-        "//conditions:default": [],
-    }),
+    crate_features = [
+        "default",
+        "pem",
+        "std",
+    ],
     crate_root = "src/lib.rs",
     edition = "2024",
     rustc_flags = [
@@ -68,7 +64,7 @@ rust_library(
     ],
     tags = [
         "cargo-bazel",
-        "crate-name=const-oid",
+        "crate-name=x509-cert",
         "manual",
         "noclippy",
         "norustfmt",
@@ -80,5 +76,10 @@ rust_library(
         "@rules_rust//rust/platform:x86_64-unknown-linux-gnu": [],
         "//conditions:default": ["@platforms//:incompatible"],
     }),
-    version = "0.10.2",
+    version = "0.3.0",
+    deps = [
+        "//third_party/rust_crates/vendor/const-oid-0.10.2:const_oid",
+        "//third_party/rust_crates/vendor/der-0.8.1:der",
+        "//third_party/rust_crates/vendor/spki-0.8.0:spki",
+    ],
 )
