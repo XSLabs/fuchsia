@@ -4,13 +4,9 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT
 
-mod counter;
-mod debuglog;
-mod event;
-mod iommu;
-mod profile;
-mod restricted;
-mod sampler;
-mod system;
-mod task;
-mod test;
+use super::iommu_dispatcher_ffi::cpp_iommu_release;
+
+fbl::impl_opaque_ref_counted_facade!(
+    pub struct Iommu,
+    cpp_iommu_release,
+);
