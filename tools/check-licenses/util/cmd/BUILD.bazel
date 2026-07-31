@@ -2,16 +2,15 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load("@platforms//host:constraints.bzl", "HOST_CONSTRAINTS")
 
 package(default_applicable_licenses = ["//:license"])
 
-test_suite(
-    name = "host_tests",
+go_library(
+    name = "cmd",
+    srcs = ["util.go"],
+    importpath = "go.fuchsia.dev/fuchsia/tools/check-licenses/util/cmd",
     target_compatible_with = HOST_CONSTRAINTS,
-    tests = [
-        "//tools/check-licenses:tests",
-        "//tools/whereiscl:host_tests",
-    ],
-    visibility = ["//build/bazel/host_tests:__pkg__"],
+    visibility = ["//tools/check-licenses:__subpackages__"],
 )
