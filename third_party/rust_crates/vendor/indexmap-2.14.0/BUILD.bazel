@@ -20,9 +20,9 @@ package(
 
 package_info(
     name = "package_info",
-    package_name = "serde_yaml",
-    package_url = "https://github.com/dtolnay/serde-yaml",
-    package_version = "0.9.34+deprecated",
+    package_name = "indexmap",
+    package_url = "https://github.com/indexmap-rs/indexmap",
+    package_version = "2.14.0",
 )
 
 license(
@@ -35,7 +35,7 @@ license(
 )
 
 rust_library(
-    name = "serde_yaml",
+    name = "indexmap",
     srcs = glob(
         include = ["**/*.rs"],
         allow_empty = False,
@@ -52,14 +52,19 @@ rust_library(
             "WORKSPACE.bazel",
         ],
     ),
+    crate_features = [
+        "default",
+        "serde",
+        "std",
+    ],
     crate_root = "src/lib.rs",
-    edition = "2021",
+    edition = "2024",
     rustc_flags = [
         "--cap-lints=allow",
     ],
     tags = [
         "cargo-bazel",
-        "crate-name=serde_yaml",
+        "crate-name=indexmap",
         "manual",
         "noclippy",
         "norustfmt",
@@ -71,12 +76,10 @@ rust_library(
         "@rules_rust//rust/platform:x86_64-unknown-linux-gnu": [],
         "//conditions:default": ["@platforms//:incompatible"],
     }),
-    version = "0.9.34+deprecated",
+    version = "2.14.0",
     deps = [
-        "//third_party/rust_crates/vendor/indexmap-2.14.0:indexmap",
-        "//third_party/rust_crates/vendor/itoa-1.0.18:itoa",
-        "//third_party/rust_crates/vendor/ryu-1.0.22:ryu",
-        "//third_party/rust_crates/vendor/serde-1.0.228:serde",
-        "//third_party/rust_crates/vendor/unsafe-libyaml-0.2.11:unsafe_libyaml",
+        "//third_party/rust_crates/vendor/equivalent-1.0.2:equivalent",
+        "//third_party/rust_crates/vendor/hashbrown-0.17.1:hashbrown",
+        "//third_party/rust_crates/vendor/serde_core-1.0.228:serde_core",
     ],
 )
