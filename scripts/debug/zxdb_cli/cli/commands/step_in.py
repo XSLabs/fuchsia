@@ -9,24 +9,31 @@ from cli.commands.base import BaseCommand
 
 
 class Command(BaseCommand):
-    """CLI command implementation for stepping over execution (next)."""
+    """CLI command implementation for stepping into execution (step_in)."""
 
-    COMMAND_NAME = "next"
+    COMMAND_NAME = "step_in"
 
     @staticmethod
     def register_cli(subparsers: Any) -> None:
         parser = subparsers.add_parser(
-            "next",
-            aliases=["n", "step-over", "step_over", "stepover"],
-            help="Step over execution to the next line (next)",
+            "step_in",
+            aliases=["step-in", "stepin", "s"],
+            help="Step into execution of current function or line (step in)",
         )
         parser.add_argument(
-            "thread_id", type=int, help="Thread ID to step over"
+            "thread_id", type=int, help="Thread ID to step into"
         )
         # TODO(https://fxbug.dev/542494515): Support single_thread option.
         parser.add_argument(
             "--single-thread",
             action="store_true",
+            default=None,
+            help=argparse.SUPPRESS,
+        )
+        # TODO(https://fxbug.dev/532508554): Support target_id option.
+        parser.add_argument(
+            "--target-id",
+            type=int,
             default=None,
             help=argparse.SUPPRESS,
         )
