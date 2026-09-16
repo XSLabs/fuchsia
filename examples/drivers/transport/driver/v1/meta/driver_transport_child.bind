@@ -6,4 +6,4 @@
 
 using fuchsia;
 
-fuchsia.Service == "fuchsia.hardware.i2cimpl.Service";
+fuchsia.Service == "fuchsia.examples.gizmo.Service";
