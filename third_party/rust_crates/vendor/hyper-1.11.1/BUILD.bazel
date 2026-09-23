@@ -20,9 +20,9 @@ package(
 
 package_info(
     name = "package_info",
-    package_name = "hyper-util",
-    package_url = "https://github.com/hyperium/hyper-util",
-    package_version = "0.1.20",
+    package_name = "hyper",
+    package_url = "https://github.com/hyperium/hyper",
+    package_version = "1.11.1",
 )
 
 license(
@@ -32,7 +32,7 @@ license(
 )
 
 rust_library(
-    name = "hyper_util",
+    name = "hyper",
     srcs = glob(
         include = ["**/*.rs"],
         allow_empty = False,
@@ -51,12 +51,9 @@ rust_library(
     ),
     crate_features = [
         "client",
-        "client-legacy",
         "default",
         "http1",
         "server",
-        "service",
-        "tokio",
     ],
     crate_root = "src/lib.rs",
     edition = "2021",
@@ -65,7 +62,7 @@ rust_library(
     ],
     tags = [
         "cargo-bazel",
-        "crate-name=hyper-util",
+        "crate-name=hyper",
         "manual",
         "noclippy",
         "norustfmt",
@@ -77,19 +74,20 @@ rust_library(
         "@rules_rust//rust/platform:x86_64-unknown-linux-gnu": [],
         "//conditions:default": ["@platforms//:incompatible"],
     }),
-    version = "0.1.20",
+    version = "1.11.1",
     deps = [
-        "//third_party/rust_crates/forks/libc-0.2.189:libc",
         "//third_party/rust_crates/forks/tokio-1.53.1:tokio",
+        "//third_party/rust_crates/vendor/atomic-waker-1.1.2:atomic_waker",
         "//third_party/rust_crates/vendor/bytes-1.12.1:bytes",
         "//third_party/rust_crates/vendor/futures-channel-0.3.34:futures_channel",
-        "//third_party/rust_crates/vendor/futures-util-0.3.34:futures_util",
+        "//third_party/rust_crates/vendor/futures-core-0.3.34:futures_core",
         "//third_party/rust_crates/vendor/http-1.5.0:http",
         "//third_party/rust_crates/vendor/http-body-1.1.0:http_body",
-        "//third_party/rust_crates/vendor/hyper-1.11.1:hyper",
+        "//third_party/rust_crates/vendor/httparse-1.10.1:httparse",
+        "//third_party/rust_crates/vendor/httpdate-1.0.3:httpdate",
+        "//third_party/rust_crates/vendor/itoa-1.0.18:itoa",
         "//third_party/rust_crates/vendor/pin-project-lite-0.2.17:pin_project_lite",
-        "//third_party/rust_crates/vendor/socket2-0.6.4:socket2",
-        "//third_party/rust_crates/vendor/tower-service-0.3.3:tower_service",
-        "//third_party/rust_crates/vendor/tracing-0.1.44:tracing",
+        "//third_party/rust_crates/vendor/smallvec-1.15.2:smallvec",
+        "//third_party/rust_crates/vendor/want-0.3.1:want",
     ],
 )
