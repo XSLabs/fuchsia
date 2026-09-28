@@ -20,9 +20,9 @@ package(
 
 package_info(
     name = "package_info",
-    package_name = "predicates",
-    package_url = "https://github.com/assert-rs/predicates-rs",
-    package_version = "3.1.3",
+    package_name = "clap",
+    package_url = "https://github.com/clap-rs/clap",
+    package_version = "4.6.7",
 )
 
 license(
@@ -35,7 +35,7 @@ license(
 )
 
 rust_library(
-    name = "predicates",
+    name = "clap",
     srcs = glob(
         include = ["**/*.rs"],
         allow_empty = False,
@@ -52,14 +52,25 @@ rust_library(
             "WORKSPACE.bazel",
         ],
     ),
+    crate_features = [
+        "derive",
+        "error-context",
+        "help",
+        "std",
+        "suggestions",
+        "usage",
+    ],
     crate_root = "src/lib.rs",
-    edition = "2021",
+    edition = "2024",
+    proc_macro_deps = [
+        "//third_party/rust_crates/vendor/clap_derive-4.6.7:clap_derive",
+    ],
     rustc_flags = [
         "--cap-lints=allow",
     ],
     tags = [
         "cargo-bazel",
-        "crate-name=predicates",
+        "crate-name=clap",
         "manual",
         "noclippy",
         "norustfmt",
@@ -71,9 +82,8 @@ rust_library(
         "@rules_rust//rust/platform:x86_64-unknown-linux-gnu": [],
         "//conditions:default": ["@platforms//:incompatible"],
     }),
-    version = "3.1.3",
+    version = "4.6.7",
     deps = [
-        "//third_party/rust_crates/vendor/anstyle-1.0.14:anstyle",
-        "//third_party/rust_crates/vendor/predicates-core-1.0.9:predicates_core",
+        "//third_party/rust_crates/vendor/clap_builder-4.6.7:clap_builder",
     ],
 )

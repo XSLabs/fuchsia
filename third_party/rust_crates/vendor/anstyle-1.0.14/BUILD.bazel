@@ -20,9 +20,9 @@ package(
 
 package_info(
     name = "package_info",
-    package_name = "predicates",
-    package_url = "https://github.com/assert-rs/predicates-rs",
-    package_version = "3.1.3",
+    package_name = "anstyle",
+    package_url = "https://github.com/rust-cli/anstyle.git",
+    package_version = "1.0.14",
 )
 
 license(
@@ -35,7 +35,7 @@ license(
 )
 
 rust_library(
-    name = "predicates",
+    name = "anstyle",
     srcs = glob(
         include = ["**/*.rs"],
         allow_empty = False,
@@ -52,6 +52,10 @@ rust_library(
             "WORKSPACE.bazel",
         ],
     ),
+    crate_features = [
+        "default",
+        "std",
+    ],
     crate_root = "src/lib.rs",
     edition = "2021",
     rustc_flags = [
@@ -59,7 +63,7 @@ rust_library(
     ],
     tags = [
         "cargo-bazel",
-        "crate-name=predicates",
+        "crate-name=anstyle",
         "manual",
         "noclippy",
         "norustfmt",
@@ -71,9 +75,5 @@ rust_library(
         "@rules_rust//rust/platform:x86_64-unknown-linux-gnu": [],
         "//conditions:default": ["@platforms//:incompatible"],
     }),
-    version = "3.1.3",
-    deps = [
-        "//third_party/rust_crates/vendor/anstyle-1.0.14:anstyle",
-        "//third_party/rust_crates/vendor/predicates-core-1.0.9:predicates_core",
-    ],
+    version = "1.0.14",
 )
