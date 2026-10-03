@@ -5,9 +5,6 @@
 package(default_applicable_licenses = ["//:license"])
 
 exports_files(
-    ["default.shard.cml"],
-    visibility = [
-        "//src/developer/build_info:__pkg__",
-        "//src/lib/files:__pkg__",
-    ],
+    ["tmp_storage.shard.cml"],
+    visibility = ["//src/lib/files:__pkg__"],
 )
