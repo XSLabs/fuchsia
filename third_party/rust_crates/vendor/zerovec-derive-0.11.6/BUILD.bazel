@@ -8,7 +8,7 @@
 
 load("@rules_license//rules:license.bzl", "license")
 load("@rules_license//rules:package_info.bzl", "package_info")
-load("@rules_rust//rust:defs.bzl", "rust_library")
+load("@rules_rust//rust:defs.bzl", "rust_proc_macro")
 
 package(
     default_package_metadata = [
@@ -20,9 +20,9 @@ package(
 
 package_info(
     name = "package_info",
-    package_name = "icu_collections",
+    package_name = "zerovec-derive",
     package_url = "https://github.com/unicode-org/icu4x",
-    package_version = "2.2.0",
+    package_version = "0.11.6",
 )
 
 license(
@@ -31,8 +31,8 @@ license(
     license_text = "LICENSE",
 )
 
-rust_library(
-    name = "icu_collections",
+rust_proc_macro(
+    name = "zerovec_derive",
     srcs = glob(
         include = ["**/*.rs"],
         allow_empty = False,
@@ -51,15 +51,12 @@ rust_library(
     ),
     crate_root = "src/lib.rs",
     edition = "2021",
-    proc_macro_deps = [
-        "//third_party/rust_crates/vendor/displaydoc-0.2.7:displaydoc",
-    ],
     rustc_flags = [
         "--cap-lints=allow",
     ],
     tags = [
         "cargo-bazel",
-        "crate-name=icu_collections",
+        "crate-name=zerovec-derive",
         "manual",
         "noclippy",
         "norustfmt",
@@ -72,12 +69,10 @@ rust_library(
         "@rules_rust//rust/platform:x86_64-unknown-linux-gnu": [],
         "//conditions:default": ["@platforms//:incompatible"],
     }),
-    version = "2.2.0",
+    version = "0.11.6",
     deps = [
-        "//third_party/rust_crates/vendor/potential_utf-0.1.5:potential_utf",
-        "//third_party/rust_crates/vendor/utf8_iter-1.0.4:utf8_iter",
-        "//third_party/rust_crates/vendor/yoke-0.8.3:yoke",
-        "//third_party/rust_crates/vendor/zerofrom-0.1.8:zerofrom",
-        "//third_party/rust_crates/vendor/zerovec-0.11.8:zerovec",
+        "//third_party/rust_crates/vendor/proc-macro2-1.0.107:proc_macro2",
+        "//third_party/rust_crates/vendor/quote-1.0.47:quote",
+        "//third_party/rust_crates/vendor/syn-3.0.6:syn",
     ],
 )
