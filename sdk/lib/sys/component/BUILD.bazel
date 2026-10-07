@@ -6,8 +6,9 @@ package(default_applicable_licenses = ["//:license"])
 
 exports_files(
     [
-        "default.shard.cml",
-        "next-vdso.shard.cml",
+        "realm_builder.shard.cml",
+        "realm_builder_base_no_diagnostics.shard.cml",
+        "realm_builder_no_diagnostics.shard.cml",
     ],
-    visibility = ["//visibility:public"],
+    visibility = ["//src/lib/fuchsia-rseq:__pkg__"],
 )
